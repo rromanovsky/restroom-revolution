@@ -2,13 +2,21 @@ import * as apiHelper from '../helpers/api-helper';
 import actionTypes from './types/app.js';
 
 export function fetchData() {
-  return (dispatch, getState) => {
-    apiHelper.fetchData().then((data) => {
+  return (dispatch) => {
+    dispatch(loadingData());
+
+    return apiHelper.fetchData().then((data) => {
       return dispatch(gotData(data));
     }).catch((err) => {
-      return dispatch(gotError(err));
       console.error(err);
+      return dispatch(gotError(err));
     });
+  };
+}
+
+export function loadingData() {
+  return {
+    type: actionTypes.LOADING_DATA
   };
 }
 

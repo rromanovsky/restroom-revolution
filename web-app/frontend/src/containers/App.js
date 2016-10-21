@@ -5,9 +5,7 @@ import apiConfig from '../configs/api-config';
 
 
 const mapStateToProps = ({ app }) => {
-  return {
-    data: app.data
-  };
+  return { ...app };
 };
 
 const mapDispatchToProps = (dispatch) => {
