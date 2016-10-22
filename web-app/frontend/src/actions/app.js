@@ -1,16 +1,12 @@
 import * as apiHelper from '../helpers/api-helper';
 import actionTypes from './types/app.js';
+import firebaseAdapter from '../helpers/firebase-adapter';
 
 export function fetchData() {
   return (dispatch) => {
     dispatch(loadingData());
 
-    return apiHelper.fetchData().then((data) => {
-      return dispatch(gotData(data));
-    }).catch((err) => {
-      console.error(err);
-      return dispatch(gotError(err));
-    });
+    firebaseAdapter((data) => dispatch(gotData(data)), err => dispatch(gotError(err)));
   };
 }
 

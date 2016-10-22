@@ -11,9 +11,7 @@ const mapStateToProps = ({ app }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: () => {
-      setInterval(() => {
-        dispatch(actions.fetchData());
-      }, apiConfig.API_POOLING_TIME_MS);
+      dispatch(actions.fetchData());
     }
   };
 };
