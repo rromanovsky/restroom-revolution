@@ -1,7 +1,8 @@
 var SerialPort = require("serialport");
 var request = require('request');
+var config = require('./config.js');
 
-var port = new SerialPort("/dev/ttyACM0", {
+var port = new SerialPort(config.serialPort, {
   baudRate: 9600,
   parser: SerialPort.parsers.readline('\n')
 });
