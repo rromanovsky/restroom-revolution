@@ -1,0 +1,6 @@
+data/Middlewares/ST/STM32_HMI_HandGesture/HmiBBGesture.h.i
+data/mbed.bld.i
+data/X_NUCLEO_COMMON.lib.i
+data/X_NUCLEO_6180XA1.lib.i
+data/Middlewares/ST/STM32_HMI_HandGesture/HmiBBGesture.cpp.i
+data/main.cpp.i
