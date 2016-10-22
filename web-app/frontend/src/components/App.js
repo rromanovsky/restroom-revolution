@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/index.scss';
-import classnames from 'classnames';
+import Room from './Room';
 
-class App extends React.Component {
+export default class App extends React.Component {
 
   componentDidMount() {
     this.props.fetchData();
@@ -23,10 +23,7 @@ class App extends React.Component {
     }
 
     return Object.keys(things).map(thing => {
-      const busy = things[thing].isBusy;
-      var classnames2 = classnames('room', {busy});
-      console.log(classnames2, busy);
-      return <div key={thing} className={classnames2}>{thing}</div>
+      return <Room key={thing} {...things[thing]} />
     });
   }
 
@@ -45,5 +42,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;

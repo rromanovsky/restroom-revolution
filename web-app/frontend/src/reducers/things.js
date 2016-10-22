@@ -7,7 +7,8 @@ export default (state = {}, action) => {
     case actionTypes.GOT_DATA:
       var v = _.get(action, 'data.thing', '<undefined>');
       var newVar = {
-        isBusy: _.get(action, 'data.isBusy', true)
+        isBusy: _.get(action, 'data.isBusy', false),
+        thing: v
       };
 
       console.log('...new values', v, newVar);
