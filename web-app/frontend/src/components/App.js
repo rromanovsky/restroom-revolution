@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/index.scss';
+import classnames from 'classnames';
 
 class App extends React.Component {
 
@@ -15,23 +16,29 @@ class App extends React.Component {
       return <h4>Loading data... Please wait for another hour...</h4>
     }
 
-    return JSON.stringify(this.props.data)
+    const things = this.props.things;
+
+    if (_.isEmpty(things)) {
+      return <div className="room">No WC found</div>
+    }
+
+    return Object.keys(things).map(thing => {
+      const busy = things[thing].isBusy;
+      var classnames2 = classnames('room', {busy});
+      console.log(classnames2, busy);
+      return <div key={thing} className={classnames2}>{thing}</div>
+    });
   }
 
   render() {
     return (
       <div className="app-container">
         <div className="main-section">
-          <h1>Restroom Revolution</h1>
-
+          <h1>WC Rooms</h1>
 
           <div className="rooms">
-            <div className="room">1</div>
-            <div className="room">2</div>
-            <div className="room">3</div>
+            {this.renderContent()}
           </div>
-
-          <div>{this.renderContent()}</div>
 
         </div>
       </div>

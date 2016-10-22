@@ -4,8 +4,8 @@ import * as actions from '../actions/app.js';
 import apiConfig from '../configs/api-config';
 
 
-const mapStateToProps = ({ app }) => {
-  return { ...app };
+const mapStateToProps = ({ things }) => {
+  return { things };
 };
 
 const mapDispatchToProps = (dispatch) => {

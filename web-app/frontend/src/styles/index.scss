@@ -1,7 +1,8 @@
 body {
   margin: 100px;
-  border: 1px solid #000;
+  border: none;
   padding: 50px;
+  text-align: center;
 }
 
 .error-msg {
@@ -25,28 +26,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: green;
+
+    &.busy {
+      background-color: red;
+    }
   }
 }
 
 .rooms, .room {
   flex: 1 100%;
-}
-
-/* Medium screens */
-@media all and (min-width: 600px) {
-  /* We tell both sidebars to share a row */
-  .aside { flex: 1 auto; }
-}
-
-/* Large screens */
-@media all and (min-width: 800px) {
-  /* We invert order of first sidebar and main
-   * And tell the main element to take twice as much width as the other two sidebars
-   */
-  .main { flex: 2 0px; }
-
-  .aside-1 { order: 1; }
-  .main    { order: 2; }
-  .aside-2 { order: 3; }
-  .footer  { order: 4; }
 }
