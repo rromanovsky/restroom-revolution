@@ -1,5 +1,4 @@
 import getRequest from './api-requester';
-import urlJoin from 'url-join';
 import config from '../configs/api-config';
 
 export function fetchData() {
@@ -7,5 +6,5 @@ export function fetchData() {
 }
 
 function getUrl() {
-  return urlJoin([config.API_URL, 'posts']);
+  return config.API_URL;
 }
