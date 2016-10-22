@@ -3,6 +3,10 @@ body {
   border: none;
   padding: 50px;
   text-align: center;
+  font-family: monospace;
+  h1 {
+    color: #ddd;
+  }
 }
 
 .error-msg {
@@ -27,9 +31,28 @@ body {
     align-items: center;
     justify-content: center;
     background-color: green;
+    flex-direction: column;
+    //background-image: url('../images/wc.png');
+
+    img {
+      width: 100px;
+      height: 100px;
+      order: 2;
+    }
+    .title {
+      order: 1;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      margin: 20px 0;
+    }
 
     &.busy {
       background-color: red;
+    }
+
+    div {
+      flex-direction: row;
     }
   }
 }
