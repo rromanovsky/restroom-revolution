@@ -1,0 +1,79 @@
+{
+  "name": "restroom-revolution",
+  "version": "0.1.0",
+  "description": "Frontend of the project Restroom Revolution",
+  "bugs": {
+    "url": "https://github.com/rromanovsky/restroom-revolution/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rromanovsky/restroom-revolution.git"
+  },
+  "scripts": {
+    "start": "npm-scripts-info",
+    "build": "NODE_ENV=production node -r babel-register ./node_modules/.bin/webpack --config ./config/webpack/prod.config.js",
+    "dev": "node -r babel-register ./config/webpack/devServer.js",
+    "lint": "node_modules/.bin/eslint -c .eslintrc ./src; exit 0",
+    "lint:fix": "node_modules/.bin/eslint -c .eslintrc ./src --fix; exit 0"
+  },
+  "scripts-info": {
+    "start": "Display information about available scripts",
+    "build": "Build frontend application",
+    "dev": "Run frontend in development mode",
+    "lint": "Run ESLint",
+    "lint:fix": "Run ESLint with --fix flag"
+  },
+  "devDependencies": {
+    "babel-core": "6.24.0",
+    "babel-eslint": "7.2.1",
+    "babel-loader": "6.4.1",
+    "babel-plugin-transform-class-properties": "6.23.0",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-plugin-transform-export-extensions": "6.22.0",
+    "babel-plugin-transform-function-bind": "6.22.0",
+    "babel-polyfill": "6.23.0",
+    "babel-preset-latest": "6.24.0",
+    "babel-preset-react": "6.23.0",
+    "babel-preset-stage-3": "6.22.0",
+    "babel-register": "6.24.0",
+    "css-loader": "0.28.0",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-loader": "1.7.1",
+    "eslint-plugin-dependencies": "2.2.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-lodash": "2.4.0",
+    "eslint-plugin-react": "6.10.3",
+    "file-loader": "0.11.0",
+    "gauge-webpack-plugin": "0.1.0",
+    "html-webpack-plugin": "2.28.0",
+    "node-sass": "^4.5.2",
+    "npm-scripts-info": "0.3.6",
+    "react-hot-loader": "3.0.0-beta.6",
+    "redux-devtools-extension": "^2.13.0",
+    "sass-loader": "6.0.3",
+    "style-loader": "0.16.1",
+    "url-loader": "0.5.8",
+    "webpack": "2.3.2",
+    "webpack-dev-server": "2.4.2",
+    "webpack-merge": "4.1.0"
+  },
+  "dependencies": {
+    "classnames": "2.2.5",
+    "lodash": "4.17.4",
+    "moment": "2.18.1",
+    "normalize-scss": "^6.0.0",
+    "qs": "6.4.0",
+    "rc-switch": "1.4.3",
+    "react": "15.4.2",
+    "react-cookie": "1.0.5",
+    "react-dom": "15.4.2",
+    "react-redux": "5.0.3",
+    "redux": "3.6.0",
+    "redux-actions": "2.0.1",
+    "redux-localstorage": "0.4.1",
+    "redux-thunk": "2.2.0",
+    "reselect": "3.0.0"
+  }
+}

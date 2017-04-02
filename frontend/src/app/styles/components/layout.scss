@@ -1,0 +1,38 @@
+@import "../reset";
+@import "../../../../node_modules/normalize-scss/sass/normalize/import-now";
+
+html,
+body,
+.root,
+.layout {
+  height: 100%;
+}
+
+h2 {
+
+}
+
+section {
+  &:first-child {
+    width: 40%;
+  }
+
+  &:last-child {
+    width: 60%;
+  }
+}
+
+.row {
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  background-color: #3B3D3E;
+  color: white;
+}

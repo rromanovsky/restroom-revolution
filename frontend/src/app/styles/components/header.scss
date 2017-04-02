@@ -1,0 +1,21 @@
+header {
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 50px 0;
+  background-color: white;
+
+  .info {
+    display: flex;
+    margin-top: 20px;
+    color: #D2D2D2;
+
+    .rc-switch {
+      margin-right: 20px;
+    }
+
+    h3 {
+      font-weight: 700;
+      color: #333333;
+    }
+  }
+}
