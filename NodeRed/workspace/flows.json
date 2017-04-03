@@ -1,0 +1,302 @@
+[
+    {
+        "id": "8d46a7e9.43ed78",
+        "type": "tab",
+        "label": "Javascript in IoT"
+    },
+    {
+        "id": "e2f6cdb0.5bc18",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "Helvetica Neue",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Helvetica Neue",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "Helvetica Neue"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "7a08ec0b.0f7da4",
+        "type": "ui_group",
+        "z": "",
+        "name": "Settings",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "da7d114e.7a85a",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "9beac246.5fadc",
+        "type": "ui_group",
+        "z": "",
+        "name": "Dashboard",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "fef13e14.45cb2",
+        "type": "MySQLdatabase",
+        "z": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "iot_rr",
+        "tz": ""
+    },
+    {
+        "id": "a0d179fb.fda838",
+        "type": "ui_group",
+        "name": "Group",
+        "tab": "",
+        "order": null,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "5da1810.1823b8",
+        "type": "mysql",
+        "z": "8d46a7e9.43ed78",
+        "mydb": "fef13e14.45cb2",
+        "name": "DB",
+        "x": 609,
+        "y": 294,
+        "wires": [
+            [
+                "94a447e5.790428"
+            ]
+        ]
+    },
+    {
+        "id": "1a9176c4.35f2f9",
+        "type": "inject",
+        "z": "8d46a7e9.43ed78",
+        "name": "1: On",
+        "topic": "",
+        "payload": "{ \"deviceId\": 1, \"state\": 1 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 221,
+        "y": 299,
+        "wires": [
+            [
+                "12d99d63.3253f3"
+            ]
+        ]
+    },
+    {
+        "id": "12d99d63.3253f3",
+        "type": "function",
+        "z": "8d46a7e9.43ed78",
+        "name": "Create",
+        "func": "\nmsg.topic = 'INSERT INTO `devices` SET ' +\n    '`deviceId`=' + msg.payload.deviceId + ', ' +\n    '`state`=' + msg.payload.state + ', ' + \n    '`updateTime`=UNIX_TIMESTAMP(NOW())';\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 414,
+        "y": 375,
+        "wires": [
+            [
+                "5da1810.1823b8"
+            ]
+        ]
+    },
+    {
+        "id": "4f573e93.090f",
+        "type": "http in",
+        "z": "8d46a7e9.43ed78",
+        "name": "",
+        "url": "/devices",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 155,
+        "wires": [
+            [
+                "952945d7.8831b8"
+            ]
+        ]
+    },
+    {
+        "id": "94a447e5.790428",
+        "type": "http response",
+        "z": "8d46a7e9.43ed78",
+        "name": "Read Response",
+        "x": 826,
+        "y": 294,
+        "wires": []
+    },
+    {
+        "id": "952945d7.8831b8",
+        "type": "function",
+        "z": "8d46a7e9.43ed78",
+        "name": "Read",
+        "func": "\nmsg.topic = 'SELECT * FROM `devices`';\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 421,
+        "y": 156,
+        "wires": [
+            [
+                "5da1810.1823b8"
+            ]
+        ]
+    },
+    {
+        "id": "d408dd75.dd26d",
+        "type": "inject",
+        "z": "8d46a7e9.43ed78",
+        "name": "1: Off",
+        "topic": "",
+        "payload": "{ \"deviceId\": 1, \"state\": 0 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 221,
+        "y": 349,
+        "wires": [
+            [
+                "12d99d63.3253f3"
+            ]
+        ]
+    },
+    {
+        "id": "94f3637f.be0e6",
+        "type": "inject",
+        "z": "8d46a7e9.43ed78",
+        "name": "2: On",
+        "topic": "",
+        "payload": "{ \"deviceId\": 2, \"state\": 1 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 217,
+        "y": 439,
+        "wires": [
+            [
+                "12d99d63.3253f3"
+            ]
+        ]
+    },
+    {
+        "id": "546f0486.86ee9c",
+        "type": "inject",
+        "z": "8d46a7e9.43ed78",
+        "name": "2: Off",
+        "topic": "",
+        "payload": "{ \"deviceId\": 2, \"state\": 0 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 217,
+        "y": 489,
+        "wires": [
+            [
+                "12d99d63.3253f3"
+            ]
+        ]
+    },
+    {
+        "id": "5f6812b2.b8804c",
+        "type": "http in",
+        "z": "8d46a7e9.43ed78",
+        "name": "",
+        "url": "/devices",
+        "method": "post",
+        "swaggerDoc": "",
+        "x": 219,
+        "y": 202,
+        "wires": [
+            [
+                "12d99d63.3253f3"
+            ]
+        ]
+    }
+]
