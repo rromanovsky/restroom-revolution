@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "node-red": "^0.16.2",
     "node-red-dashboard": "^2.3.5",
     "node-red-node-mysql": "0.0.16"
   }
