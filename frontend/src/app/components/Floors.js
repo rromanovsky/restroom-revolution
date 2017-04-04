@@ -1,18 +1,38 @@
 import { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { setRoom, getFloors } from '../../redux';
 import '../styles/components/floors.scss';
 
-export default class extends Component {
-  static propTypes = {
-    floors: PropTypes.arrayOf(
-      PropTypes.shape({
-        doors: PropTypes.arrayOf(
-          PropTypes.shape({
-            status: PropTypes.string.isRequired,
-          }).isRequired,
-        ).isRequired,
-      }).isRequired,
-    ).isRequired,
-  };
+class Floors extends Component {
+  //static propTypes = {
+  //  floors: PropTypes.arrayOf(
+  //    PropTypes.shape({
+  //      doors: PropTypes.arrayOf(
+  //        PropTypes.shape({
+  //          status: PropTypes.string.isRequired,
+  //        }).isRequired,
+  //      ).isRequired,
+  //    }).isRequired,
+  //  ).isRequired,
+  //};
+
+  constructor(props) {
+    super(props);
+    const socket = new WebSocket('ws://127.0.0.1:1880/ws/devices');
+
+    socket.onopen = (event) => {
+      console.log('WebSocket OK');
+    };
+
+    socket.onmessage = (event) => {
+      console.log('event.data', event.data);
+      const { status, deviceId } = event.data;
+
+      //this.props.setRoom({ status: 'filled', deviceId: 1 });
+      this.props.setRoom({ status, deviceId });
+    }
+  }
 
   renderDoorStatus(status) {
     let text;
@@ -42,7 +62,7 @@ export default class extends Component {
         {
           this.props.floors.map((floor, i) => (
             <section className="floor" key={`floor${i}`}>
-              <h2>{++i} этаж</h2>
+              {/*<h2>{++i} этаж</h2>*/}
               <ul className="doors">
                 {
                   console.log(floor.doors.map((door, k) => console.log(door,k)))
@@ -62,3 +82,13 @@ export default class extends Component {
     );
   }
 }
+
+const mapStateToProps = createStructuredSelector({
+  floors: getFloors,
+});
+
+const mapDispatchToProps = {
+  setRoom,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Floors);

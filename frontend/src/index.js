@@ -2,13 +2,12 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-// import Layout from './src/layout/components/Layout';
-import reducers from './reducers';
+import reducer from './redux';
 import Layout from './app/components/Layout';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(reducers, composeWithDevTools());
+const store = createStore(reducer, composeWithDevTools());
 const render = Component => ReactDOM.render(
   <AppContainer>
     <Provider store={store}>
@@ -22,6 +21,6 @@ render(Layout);
 
 // Hot module reload
 if (module.hot) {
-  module.hot.accept('./reducers', () => store.replaceReducer(require('./reducers').default));
+  module.hot.accept('./redux', () => store.replaceReducer(require('./redux').default));
   module.hot.accept('./app/components/Layout', () => render(require('./app/components/Layout').default));
 }
