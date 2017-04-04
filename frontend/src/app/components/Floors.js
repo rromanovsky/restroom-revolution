@@ -19,18 +19,18 @@ class Floors extends Component {
 
   constructor(props) {
     super(props);
-    const socket = new WebSocket('ws://127.0.0.1:1880/ws/devices');
+    const socket = new WebSocket('ws://10.42.0.1:1880/ws/devices');
 
     socket.onopen = (event) => {
       console.log('WebSocket OK');
     };
 
     socket.onmessage = (event) => {
-      console.log('event.data', event.data);
-      const { status, deviceId } = event.data;
+      console.log('event.data', JSON.parse(event.data));
+      const { state, deviceId } = JSON.parse(event.data);
 
       //this.props.setRoom({ status: 'filled', deviceId: 1 });
-      this.props.setRoom({ status, deviceId });
+      this.props.setRoom({ status: state === '1' ? 'filled' : 'free', deviceId });
     }
   }
 
