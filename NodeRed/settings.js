@@ -1,6 +1,6 @@
 module.exports = {
   uiPort: process.env.PORT || 1880,
-  uiHost: "127.0.0.1",
+  uiHost: "10.42.0.1",
   userDir: './workspace',
   flowFile: 'flows.json',
   flowFilePretty: true,
