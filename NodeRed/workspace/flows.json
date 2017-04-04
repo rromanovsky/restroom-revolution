@@ -137,6 +137,13 @@
         "width": 6
     },
     {
+        "id": "c4198969.002a58",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/devices",
+        "wholemsg": "false"
+    },
+    {
         "id": "5da1810.1823b8",
         "type": "mysql",
         "z": "8d46a7e9.43ed78",
@@ -165,7 +172,7 @@
         "y": 299,
         "wires": [
             [
-                "12d99d63.3253f3"
+                "7e9f5084.17d08"
             ]
         ]
     },
@@ -177,8 +184,8 @@
         "func": "\nmsg.topic = 'INSERT INTO `devices` SET ' +\n    '`deviceId`=' + msg.payload.deviceId + ', ' +\n    '`state`=' + msg.payload.state + ', ' + \n    '`updateTime`=UNIX_TIMESTAMP(NOW())';\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 414,
-        "y": 375,
+        "x": 421,
+        "y": 295,
         "wires": [
             [
                 "5da1810.1823b8"
@@ -241,7 +248,7 @@
         "y": 349,
         "wires": [
             [
-                "12d99d63.3253f3"
+                "7e9f5084.17d08"
             ]
         ]
     },
@@ -260,7 +267,7 @@
         "y": 439,
         "wires": [
             [
-                "12d99d63.3253f3"
+                "7e9f5084.17d08"
             ]
         ]
     },
@@ -279,7 +286,7 @@
         "y": 489,
         "wires": [
             [
-                "12d99d63.3253f3"
+                "7e9f5084.17d08"
             ]
         ]
     },
@@ -295,7 +302,35 @@
         "y": 202,
         "wires": [
             [
-                "12d99d63.3253f3"
+                "7e9f5084.17d08"
+            ]
+        ]
+    },
+    {
+        "id": "2abdf6dd.8609ba",
+        "type": "websocket out",
+        "z": "8d46a7e9.43ed78",
+        "name": "",
+        "server": "c4198969.002a58",
+        "client": "",
+        "x": 707,
+        "y": 483,
+        "wires": []
+    },
+    {
+        "id": "7e9f5084.17d08",
+        "type": "function",
+        "z": "8d46a7e9.43ed78",
+        "name": "Receiver",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 412,
+        "y": 484,
+        "wires": [
+            [
+                "12d99d63.3253f3",
+                "2abdf6dd.8609ba"
             ]
         ]
     }
