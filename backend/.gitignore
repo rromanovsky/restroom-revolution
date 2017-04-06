@@ -1,2 +1,10 @@
-/config.js
-/node_modules
+.DS_STORE
+.netbeans
+.node_history
+/nbproject/
+/.idea/
+/node_modules/
+/workspace/*
+!workspace/flows.json
+settings.js
+npm-debug.log*

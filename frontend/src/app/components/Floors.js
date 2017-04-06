@@ -5,6 +5,7 @@ import { setRoom, getFloors } from '../../redux';
 import '../styles/components/floors.scss';
 
 class Floors extends Component {
+  // @TODO
   //static propTypes = {
   //  floors: PropTypes.arrayOf(
   //    PropTypes.shape({
@@ -19,39 +20,41 @@ class Floors extends Component {
 
   constructor(props) {
     super(props);
-    const socket = new WebSocket('ws://10.42.0.1:1880/ws/devices');
+    const socket = new WebSocket('ws://192.168.2.1:1880/ws/devices'); // @TODO: move it to config
 
     socket.onopen = (event) => {
-      console.log('WebSocket OK');
+      console.log('WebSocket OK'); // @TODO
     };
 
     socket.onmessage = (event) => {
-      console.log('event.data', JSON.parse(event.data));
       const { state, deviceId } = JSON.parse(event.data);
 
-      //this.props.setRoom({ status: 'filled', deviceId: 1 });
-      this.props.setRoom({ status: state === '1' ? 'filled' : 'free', deviceId });
-    }
+      this.props.setRoom({ status: state === '1' ? 'filled' : 'free', deviceId }); // @TODO
+    };
   }
 
-  renderDoorStatus(status) {
+  renderDoorStatus = (status) => {
+    let icon
     let text;
 
     switch (status) {
       case 'filled':
+        icon = 'fa-close';
         text = 'Занято';
         break;
       case 'time-out':
+        icon = 'fa-question';
         text = 'Кажется забыли выключить свет';
         break;
       default:
+        icon = 'fa-check';
         text = 'Свободно';
         break;
     }
 
     return (
       <div className={`door ${status}`}>
-        <i></i>{text}
+        <i className={`fa ${icon}`} />{text}
       </div>
     );
   };
@@ -62,7 +65,7 @@ class Floors extends Component {
         {
           this.props.floors.map((floor, i) => (
             <section className="floor" key={`floor${i}`}>
-              {/*<h2>{++i} этаж</h2>*/}
+              <h2>{++i} этаж</h2>
               <ul className="doors">
                 {
                   console.log(floor.doors.map((door, k) => console.log(door,k)))

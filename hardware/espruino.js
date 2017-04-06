@@ -3,7 +3,7 @@ var http = require("http");
 
 var info = wifi.getIP();
 var deviceId = info.mac;
-var host = '10.42.0.1:1880';
+var host = '192.168.2.1:1880';
 
 var currentState = 0;
 var prevState = 1;
@@ -17,7 +17,6 @@ var prevState = 1;
     prevState = currentState;
     http.get('http://' + host + '/change-state?deviceId=' + deviceId + '&state=' + currentState);
   }
-
 
   setTimeout(loop, 1000);
 })();

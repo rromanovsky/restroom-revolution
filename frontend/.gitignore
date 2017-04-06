@@ -1,9 +1,7 @@
-*~
-*#
 .DS_STORE
 .netbeans
 .node_history
-npm-debug.log*
 /nbproject/
 /.idea/
 /node_modules/
+npm-debug.log*

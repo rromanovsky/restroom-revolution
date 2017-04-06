@@ -1,16 +1,16 @@
 {
-  "name": "restroom_server",
+  "name": "restroom-revolution",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Backend of the project Restroom Revolution",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node-red -s ./settings.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.75.0",
-    "serialport": "^4.0.3"
+    "node-red": "^0.16.2",
+    "node-red-dashboard": "^2.3.5",
+    "node-red-node-mysql": "0.0.16"
   }
 }

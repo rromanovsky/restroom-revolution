@@ -4,6 +4,8 @@
 }
 
 .floor {
+  padding-top: 100px;
+
   &:last-child {
     .doors {
       .door-container {
@@ -11,14 +13,17 @@
       }
     }
   }
+
+  h2 {
+    font-size: 25px;
+    padding-bottom: 15px;
+  }
 }
 
 .doors {
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin: 0;
-  padding: 0;
 
   .door-container {
     width: 100%;
@@ -45,6 +50,8 @@
         margin: 30px auto 10px;
         border: 2px solid white;
         border-radius: 50%;
+        font-size: 30px;
+        line-height: 40px;
       }
     }
   }

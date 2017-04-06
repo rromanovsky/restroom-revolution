@@ -11,12 +11,12 @@ export default class extends Component {
       <footer>
         <div className="main row">
           <section>
-            <div>Скачать iOS приложение</div>
+            {/*<div>Скачать iOS приложение</div>*/}
           </section>
           <section>
             <div className="statistics">
-              <div className="title">Количество посещений за сегодня</div>
-              <div className="value">{this.props.count}</div>
+              {/*<div className="title">Количество посещений за сегодня</div>*/}
+              {/*<div className="value">{this.props.count}</div>*/}
             </div>
           </section>
         </div>

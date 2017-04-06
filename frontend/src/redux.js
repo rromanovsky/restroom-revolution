@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import { combineReducers } from 'redux';
 import { createAction, handleAction } from 'redux-actions';
-import { createSelector } from 'reselect';
 
 // Actions
 export const setRoom = createAction('ROOMS/SET');
@@ -10,13 +9,10 @@ export const setRoom = createAction('ROOMS/SET');
 export const getFloors = _.property('floors');
 
 // Reducers
-const initialState = [{
-  doors: [{
-    status: 'free',
-  }],
-}];
+const mockup = { doors: [{ status: 0 }, { status: 0 }] }; // @TODO
+const initialState = [{ doors: [{ status: 'free' }] }, mockup];
 const floors = handleAction(setRoom, (state, { payload }) => {
-  return [{ doors: [{ status: payload.status }] }];
+  return [{ doors: [{ status: payload.status }] }, mockup];
 }, initialState);
 
 export default combineReducers({
