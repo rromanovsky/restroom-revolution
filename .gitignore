@@ -1,3 +1,7 @@
-/.DS_STORE/
-/.netbeans/
+.DS_STORE
+.netbeans
+.node_history
+/nbproject/
 /.idea/
+/node_modules/
+npm-debug.log*
