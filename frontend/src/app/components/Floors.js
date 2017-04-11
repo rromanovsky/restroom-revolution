@@ -1,22 +1,13 @@
 import { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { setRoom, getFloors } from '../../redux';
 import '../styles/components/floors.scss';
+import icon1 from '../assets/icon1.png';
 
-class Floors extends Component {
-  // @TODO
-  //static propTypes = {
-  //  floors: PropTypes.arrayOf(
-  //    PropTypes.shape({
-  //      doors: PropTypes.arrayOf(
-  //        PropTypes.shape({
-  //          status: PropTypes.string.isRequired,
-  //        }).isRequired,
-  //      ).isRequired,
-  //    }).isRequired,
-  //  ).isRequired,
-  //};
+export default class extends Component {
+  static propTypes = {
+    notifications: PropTypes.bool.isRequired,
+    floors: PropTypes.array.isRequired,
+    setRoom: PropTypes.func.isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -25,20 +16,48 @@ class Floors extends Component {
     socket.onopen = (event) => {
       console.log('WebSocket OK'); // @TODO
     };
-
     socket.onmessage = (event) => {
       const { state, deviceId } = JSON.parse(event.data);
 
-      this.props.setRoom({ status: state === '1' ? 'filled' : 'free', deviceId }); // @TODO
+      this.props.setRoom({ status: state === '1' ? 'occupied' : 'free', deviceId }); // @TODO
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    // @TODO
+    const prev = this.props.floors[0].doors[0].status;
+    const next = nextProps.floors[0].doors[0].status;
+
+    if (this.props.notifications && prev === 'occupied' && next === 'free') {
+      if ('Notification' in window) {
+        Notification.requestPermission((permission) => {
+          if (permission !== 'granted') {
+            return;
+          }
+
+          const notification = new Notification('Свободно!', {
+            body: 'Go go gooo!',
+            icon: icon1,
+            tag: 'status',
+          });
+
+          notification.onclick = () => {
+            notification.close();
+          };
+          setTimeout(() => {
+            notification.close();
+          }, 1500);
+        });
+      }
+    }
+  }
+
   renderDoorStatus = (status) => {
-    let icon
+    let icon;
     let text;
 
     switch (status) {
-      case 'filled':
+      case 'occupied':
         icon = 'fa-close';
         text = 'Занято';
         break;
@@ -68,9 +87,6 @@ class Floors extends Component {
               <h2>{++i} этаж</h2>
               <ul className="doors">
                 {
-                  console.log(floor.doors.map((door, k) => console.log(door,k)))
-                }
-                {
                   floor.doors.map((door, k) => (
                     <li className="door-container" key={`floor${k}`}>
                       {this.renderDoorStatus(door.status)}
@@ -85,13 +101,3 @@ class Floors extends Component {
     );
   }
 }
-
-const mapStateToProps = createStructuredSelector({
-  floors: getFloors,
-});
-
-const mapDispatchToProps = {
-  setRoom,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Floors);

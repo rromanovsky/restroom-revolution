@@ -19,7 +19,7 @@ export default class extends Component {
     return (
       <Switch
         onChange={this.props.onChange}
-        //checked={this.props.checked}
+        checked={this.props.checked}
         disabled={this.props.disabled}
       />
     );

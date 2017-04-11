@@ -1,5 +1,5 @@
-var wifi = require("Wifi");
-var http = require("http");
+var wifi = require('Wifi');
+var http = require('http');
 
 var info = wifi.getIP();
 var deviceId = info.mac;
