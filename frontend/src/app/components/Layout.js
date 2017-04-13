@@ -6,7 +6,6 @@ import Header from './Header';
 import Floors from './Floors';
 import Footer from './Footer';
 import { getNotifications, setNotifications, getFloors, setRoom } from '../../redux';
-import '../styles/components/layout.scss';
 
 class Layout extends Component {
   static propTypes = {

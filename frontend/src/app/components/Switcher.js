@@ -1,6 +1,5 @@
 import { Component, PropTypes } from 'react';
 import Switch from 'rc-switch';
-import '../styles/components/switcher.scss';
 
 export default class extends Component {
   static propTypes = {

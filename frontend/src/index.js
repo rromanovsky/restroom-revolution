@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './redux';
 import Layout from './app/components/Layout';
+import './app/styles/index.scss';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 

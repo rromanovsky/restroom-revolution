@@ -9,13 +9,13 @@ $duration: .3s;
   line-height: 20px;
   vertical-align: middle;
   border-radius: 20px 20px;
-  border: 1px solid #ccc;
-  background-color: #ccc;
+  border: 1px solid #CCC;
+  background-color: #CCC;
   cursor: pointer;
   transition: all $duration cubic-bezier(.35, 0, .25, 1);
 
   &-inner {
-    color: #fff;
+    color: white;
     font-size: 12px;
     position: absolute;
     left: 24px;
@@ -28,7 +28,7 @@ $duration: .3s;
     left: 2px;
     top: 1px;
     border-radius: 50% 50%;
-    background-color: #ffffff;
+    background-color: white;
     content: " ";
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .26);

@@ -1,5 +1,4 @@
 import { Component, PropTypes } from 'react';
-import '../styles/components/floors.scss';
 import icon1 from '../assets/icon1.png';
 
 export default class extends Component {

@@ -1,5 +1,4 @@
 import { Component, PropTypes } from 'react';
-import '../styles/components/footer.scss';
 
 export default class extends Component {
   static propTypes = {

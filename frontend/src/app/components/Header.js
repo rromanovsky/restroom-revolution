@@ -2,7 +2,6 @@ import { Component, PropTypes } from 'react';
 import reactCookie from 'react-cookie';
 import Switcher from './Switcher';
 import logo from '../assets/logo.png';
-import '../styles/components/header.scss';
 
 export default class extends Component {
   static propTypes = {
