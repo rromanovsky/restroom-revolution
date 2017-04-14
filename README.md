@@ -11,8 +11,9 @@
 
 ## Backend
 - `cd backend`
-- Установка зависимостей: `npm i`
-- Запуск приложения: `npm start`
+- Создаем файл настроек `cp settings.js.sample settings.js` и вводим туда свой IP
+- Устанавливаем зависимости: `npm i`
+- Запускаем приложение: `npm start`
 - БД: `restroom-revolution`, дамп: `backend/db/schema.sql`
 - Заходим на backend: `http://localhost:1880`
     - Настраиваем подключение к БД (звено с названием `DB`)
